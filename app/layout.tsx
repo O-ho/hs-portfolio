@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: Og.src,
+        width: 800,
+        height: 600,
       },
     ],
   },
