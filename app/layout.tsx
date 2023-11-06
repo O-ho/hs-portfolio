@@ -17,8 +17,11 @@ export const metadata: Metadata = {
         url: Og.src,
         width: 800,
         height: 600,
+        alt: "나현석 | 자산관리사",
       },
     ],
+    type: "website",
+    locale: "ko_KR",
   },
 };
 console.log(Og.src);
