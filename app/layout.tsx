@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "재무설계는 단순 1회성 재무상담이나 상품판매가 아닌 고객에게 꼭 필요한 기차와 목표를 함께 의논하고 함께 달성하는 파트너쉽입니다.",
   openGraph: {
-    images: "https://ifh.cc/v-m96dyM",
+    images: "https://ifh.cc/g/TA5fSx.jpg",
     description:
       "재무설계는 단순 1회성 재무상담이나 상품판매가 아닌 고객에게 꼭 필요한 기차와 목표를 함께 의논하고 함께 달성하는 파트너쉽입니다.",
   },
