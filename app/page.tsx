@@ -5,6 +5,7 @@ import Float from "@/app/components/Float";
 
 import React from "react";
 import ApplyButton from "@/app/components/ApplyButton";
+import Gap from "@/app/components/Gap";
 
 export default function Home() {
   return (
@@ -17,7 +18,10 @@ export default function Home() {
       >
         경력 자리
       </div>
+      <Gap />
       <AnimatedBox />
+      <Gap />
+
       <Carousel />
       <Example />
       <div className={"text-2xl h-24 flex items-center justify-center"}>

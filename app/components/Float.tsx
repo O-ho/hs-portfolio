@@ -9,17 +9,23 @@ const Float = () => {
   return (
     <div
       className={
-        "fixed bottom-12 right-4 md:right-8 xl:right-96 flex justify-end"
+        "fixed bottom-8 right-4 md:right-8 xl:right-96 flex justify-end"
       }
     >
       <Link
         href={"https://open.kakao.com/o/s93LYp7e"}
         type={"button"}
         className={
-          "w-20 h-20 bg-white items-center flex justify-center rounded-full shadow-2xl"
+          "w-20 h-20 bg-white items-center flex justify-center rounded-full shadow-2xl overflow-hidden"
         }
       >
-        <Image src={KakaoIcon} alt={"kakao"} width={56} height={56} />
+        <Image
+          className={"w-auto h-auto"}
+          src={KakaoIcon}
+          alt={"kakao"}
+          width={56}
+          height={56}
+        />
       </Link>
     </div>
   );

@@ -13,6 +13,7 @@ import Example9 from "public/images/example9.jpeg";
 import Example10 from "public/images/example10.jpeg";
 import Image, { StaticImageData } from "next/image";
 import { useScroll, useTransform, motion } from "framer-motion";
+import { EXAMPLE } from "@/app/constants/example";
 const ExampleList = [
   {
     id: 1,
@@ -108,7 +109,7 @@ const EachItem = ({ array }: { array: Item[] }) => {
             "relative h-96 bg-gray-100 rounded-3xl overflow-hidden hover:scale-105 cursor-pointer transition-all ease-in-out duration-500"
           }
         >
-          <Image src={src} alt={`example${id}`} fill />
+          <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
         </div>
       ))}
     </motion.div>
@@ -116,11 +117,27 @@ const EachItem = ({ array }: { array: Item[] }) => {
 };
 const Example = () => {
   return (
-    <ul className={"flex flex-col gap-6 px-4"}>
-      {ExampleList.map(({ id, array }) => (
-        <EachItem key={id} array={array} />
-      ))}
-    </ul>
+    <div className={"p-2"}>
+      <p>클릭 확대 추가</p>
+      <div className={"grid grid-cols-4 sm:grid-cols-3 gap-1.5"}>
+        {EXAMPLE.map(({ id, src }) => (
+          <div key={id}>
+            <div
+              className={
+                "relative h-24 sm:h-60 overflow-hidden rounded-xl hover:rotate-1 odd:hover:rotate-[-1deg]"
+              }
+            >
+              <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    // <ul className={"flex flex-col gap-6 px-4"}>
+    //   {ExampleList.map(({ id, array }) => (
+    //     <EachItem key={id} array={array} />
+    //   ))}
+    // </ul>
   );
 };
 
