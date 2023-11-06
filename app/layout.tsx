@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import cn from "classnames";
 import { roboto } from "@/app/font";
-import Og from "public/images/main.jpeg";
+import Og from "../public/images/main.jpeg";
 export const metadata: Metadata = {
   metadataBase: new URL("https://hs-portfolio.vercel.app"),
   title: "나현석 | 자산관리사",
