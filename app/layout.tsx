@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     locale: "ko_KR",
   },
 };
-console.log(Og);
 export default function RootLayout({
   children,
 }: {
