@@ -105,7 +105,7 @@ const EachItem = ({ array }: { array: Item[] }) => {
         <div
           key={id}
           className={
-            "relative h-96 bg-blue-300 rounded-3xl overflow-hidden hover:scale-105 cursor-pointer transition-all ease-in-out duration-500"
+            "relative h-96 bg-gray-100 rounded-3xl overflow-hidden hover:scale-105 cursor-pointer transition-all ease-in-out duration-500"
           }
         >
           <Image src={src} alt={`example${id}`} fill />

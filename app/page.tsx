@@ -12,7 +12,7 @@ export default function Home() {
       <MainTop />
       <div
         className={
-          "h-96 w-full bg-amber-100 flex items-center justify-center text-4xl"
+          "h-96 w-full bg-gray-100 mt-4 flex items-center justify-center text-4xl"
         }
       >
         경력 자리
