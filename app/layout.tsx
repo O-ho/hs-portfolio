@@ -3,6 +3,7 @@ import "./globals.css";
 import cn from "classnames";
 import { roboto } from "@/app/font";
 import Og from "../public/images/main.jpeg";
+import LayoutWrapper from "@/app/template/LayoutWrapper";
 export const metadata: Metadata = {
   metadataBase: new URL("https://hs-portfolio.vercel.app"),
   title: "나현석 | 자산관리사",
@@ -32,7 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(roboto.className, "bg-cyan-50")}>
-        <main className={"max-w-720 bg-white m-auto"}>{children}</main>
+        <main className={"max-w-720 bg-white m-auto"}>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </main>
       </body>
     </html>
   );

@@ -15,8 +15,15 @@ const config: Config = {
       rotate: {
         "-1": "-1deg",
       },
+      height: {
+        mq: "calc(100vh * 11/12)",
+        mq2: "calc(100vh * 5/6)",
+      },
+
       width: {
         "720": "720px",
+        mq: "calc(100vw * 11/12)",
+        mq2: "calc(100vw * 5/6)",
       },
       maxWidth: {
         "720": "720px",

@@ -1,143 +1,92 @@
 "use client";
 
-import React, { useRef } from "react";
-import Example1 from "public/images/example1.jpeg";
-import Example2 from "public/images/example2.jpeg";
-import Example3 from "public/images/example3.jpeg";
-import Example4 from "public/images/example4.jpeg";
-import Example5 from "public/images/example5.jpeg";
-import Example6 from "public/images/example6.jpeg";
-import Example7 from "public/images/example7.jpeg";
-import Example8 from "public/images/example8.jpeg";
-import Example9 from "public/images/example9.jpeg";
-import Example10 from "public/images/example10.jpeg";
+import React, { useEffect, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
-import { useScroll, useTransform, motion } from "framer-motion";
 import { EXAMPLE } from "@/app/constants/example";
-const ExampleList = [
-  {
-    id: 1,
-    array: [
-      {
-        id: 1,
-        src: Example1,
-      },
-      {
-        id: 2,
-        src: Example2,
-      },
-    ],
-  },
-  {
-    id: 2,
-    array: [
-      {
-        id: 1,
-        src: Example3,
-      },
-      {
-        id: 2,
-        src: Example4,
-      },
-    ],
-  },
-  {
-    id: 3,
-    array: [
-      {
-        id: 1,
-        src: Example5,
-      },
-      {
-        id: 2,
-        src: Example6,
-      },
-    ],
-  },
-  {
-    id: 4,
-    array: [
-      {
-        id: 1,
-        src: Example7,
-      },
-      {
-        id: 2,
-        src: Example8,
-      },
-    ],
-  },
-  {
-    id: 5,
-    array: [
-      {
-        id: 1,
-        src: Example9,
-      },
-      {
-        id: 2,
-        src: Example10,
-      },
-    ],
-  },
-];
+import { useOverlay } from "@toss/use-overlay";
+import ModalWrapper from "@/app/template/ModalWrapper";
+import Carousel from "react-multi-carousel";
+
+import "react-multi-carousel/lib/styles.css";
 type Item = {
   id: number;
   src: StaticImageData;
 };
+type Props = {
+  isOpen: boolean;
+  exit: () => void;
+  id: number;
+};
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
+const Modal = ({ isOpen, exit, id }: Props) => {
+  const ref = useRef<Carousel>(null);
+  useEffect(() => {
+    ref.current?.goToSlide(id);
+  }, [ref, id]);
 
-const EachItem = ({ array }: { array: Item[] }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "0.45 1"],
-  });
-  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  if (!isOpen) return null;
+  console.log(id);
   return (
-    <motion.div
-      ref={ref}
-      style={{
-        scale: scaleProgress,
-        opacity: scrollYProgress,
-      }}
-      className={"grid grid-cols-1 md:grid-cols-2 gap-4"}
-    >
-      {array.map(({ src, id }) => (
-        <div
-          key={id}
-          className={
-            "relative h-96 bg-gray-100 rounded-3xl overflow-hidden hover:scale-105 cursor-pointer transition-all ease-in-out duration-500"
-          }
+    <ModalWrapper>
+      <div className={"w-full h-full bg-opacity-40 bg-gray-300 relative"}>
+        <Carousel
+          responsive={responsive}
+          className="relative"
+          ref={ref}
+          minimumTouchDrag={40}
         >
-          <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
-        </div>
-      ))}
-    </motion.div>
+          {EXAMPLE.map(({ id, src }) => (
+            <div
+              key={id}
+              onClick={() => exit()}
+              className={"flex items-center justify-center"}
+            >
+              <div className={"relative scale-x-75 scale-y-90 h-mq w-mq"}>
+                <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+    </ModalWrapper>
   );
 };
 const Example = () => {
+  const overlay = useOverlay();
+  const onClickImage = (id: number) => {
+    overlay.open(({ isOpen, exit }) => (
+      <Modal isOpen={isOpen} exit={exit} id={id} />
+    ));
+  };
   return (
     <div className={"p-2"}>
       <p>클릭 확대 추가</p>
-      <div className={"grid grid-cols-4 sm:grid-cols-3 gap-1.5"}>
+      <div className={"grid grid-cols-2 sm:grid-cols-3 gap-1.5"}>
         {EXAMPLE.map(({ id, src }) => (
-          <div key={id}>
-            <div
-              className={
-                "relative h-24 sm:h-60 overflow-hidden rounded-xl hover:rotate-1 odd:hover:rotate-[-1deg]"
-              }
-            >
+          <button type={"button"} onClick={() => onClickImage(id)} key={id}>
+            <div className={"relative h-72 sm:h-72 overflow-hidden rounded-xl"}>
               <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>
-    // <ul className={"flex flex-col gap-6 px-4"}>
-    //   {ExampleList.map(({ id, array }) => (
-    //     <EachItem key={id} array={array} />
-    //   ))}
-    // </ul>
   );
 };
 
