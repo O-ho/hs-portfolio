@@ -90,14 +90,8 @@ const AnimatedBox = () => {
         animate={inView ? "visible" : "hidden"}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <h2 className={"text-xl flex items-center gap-4 mb-16"}>
+        <h2 className={"text-xl flex items-center gap-4 mb-16 text-black"}>
           <Image src={Bulb} alt={"good"} width={56} height={56} />
-          <a
-            className={"hidden"}
-            href="https://kr.freepik.com/icon/idea-bulb_4797596#fromView=search&term=%EC%A0%84%EA%B5%AC&page=1&position=17&track=ais"
-          >
-            rsetiawan 제작 아이콘
-          </a>
           이런분들, 상담을 통해 큰 도움이 됩니다
         </h2>
       </motion.div>

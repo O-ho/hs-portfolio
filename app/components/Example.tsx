@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import { EXAMPLE } from "@/app/constants/example";
 import { useOverlay } from "@toss/use-overlay";
@@ -8,6 +8,9 @@ import ModalWrapper from "@/app/template/ModalWrapper";
 import Carousel from "react-multi-carousel";
 
 import "react-multi-carousel/lib/styles.css";
+import useLockScroll from "@/app/hooks/useRockScroll";
+import { useAsync } from "react-use";
+
 type Item = {
   id: number;
   src: StaticImageData;
@@ -36,12 +39,11 @@ const responsive = {
 };
 const Modal = ({ isOpen, exit, id }: Props) => {
   const ref = useRef<Carousel>(null);
-  useEffect(() => {
-    ref.current?.goToSlide(id);
+  useLockScroll(true);
+  useAsync(async () => {
+    ref.current?.goToSlide(id - 1);
   }, [ref, id]);
-
-  if (!isOpen) return null;
-  console.log(id);
+  console.log(ref.current);
   return (
     <ModalWrapper>
       <div className={"w-full h-full bg-opacity-40 bg-gray-300 relative"}>
@@ -57,7 +59,11 @@ const Modal = ({ isOpen, exit, id }: Props) => {
               onClick={() => exit()}
               className={"flex items-center justify-center"}
             >
-              <div className={"relative scale-x-75 scale-y-90 h-mq w-mq"}>
+              <div
+                className={
+                  "relative scale-85 h-mq w-mq rounded-2xl overflow-hidden"
+                }
+              >
                 <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
               </div>
             </div>
