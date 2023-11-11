@@ -39,7 +39,7 @@ const responsive = {
   },
 };
 const Modal = ({ isOpen, exit, list }: Props) => {
-  useLockScroll(isOpen);
+  useLockScroll(true);
 
   return (
     <ModalWrapper>
