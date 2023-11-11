@@ -22,15 +22,15 @@ const fadeInAnimation = {
 const Career = () => {
   return (
     <section className={"flex flex-col pt-10"}>
-      <div className={"flex gap-2 px-4"}>
+      <div className={"flex gap-4 px-4"}>
         <div className={"flex flex-col gap-2"}>
           <Image
-            className={"rounded-3xl"}
+            className={"rounded-3xl min-h-350"}
             src={"/images/hs_main.jpeg"}
             priority
             alt={"hs"}
             width={200}
-            height={240}
+            height={300}
           />
           <h2 className={"text-l font-semibold tracking-wide text-center"}>
             나현석

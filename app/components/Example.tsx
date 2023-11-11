@@ -43,12 +43,12 @@ const Modal = ({ isOpen, exit, list }: Props) => {
 
   return (
     <ModalWrapper>
-      <div className={"w-full h-full relative"}>
+      <div className={"w-full h-full relative z-50"}>
         <button
           type={"button"}
           onClick={() => exit()}
           className={
-            "absolute right-8 top-8 w-10 h-10 flex items-center justify-center z-50"
+            "absolute right-4 top-8 w-10 h-10 flex items-center justify-center z-50"
           }
         >
           <Image src={Close} alt={"close"} width={30} height={30} />
@@ -59,11 +59,7 @@ const Modal = ({ isOpen, exit, list }: Props) => {
           minimumTouchDrag={40}
         >
           {list.map(({ id, src }) => (
-            <div
-              key={id}
-              onClick={() => exit()}
-              className={"flex items-center justify-center pt-12"}
-            >
+            <div key={id} className={"flex items-center justify-center pt-12"}>
               <div
                 className={
                   "relative scale-y-90 h-mq2 w-mq rounded-2xl overflow-hidden"
@@ -89,19 +85,27 @@ const Example = () => {
     ));
   };
   return (
-    <div className={"px-4"}>
-      <h2>타이틀이 하나 있으면 좋을것 같음 캐러셀로 바꿀지도</h2>
-      <div className={"grid grid-cols-3 gap-2"}>
+    <div onDrag={(e) => e.stopPropagation()} className={"z-full"}>
+      <h2>타이틀이 하나 있으면 좋을것 같음</h2>
+      <Carousel responsive={responsive}>
         {EXAMPLE.map(({ id, src }) => (
-          <button type={"button"} onClick={() => onClickImage(id)} key={id}>
+          <button
+            type={"button"}
+            onClick={() => {
+              onClickImage(id);
+            }}
+            key={id}
+          >
             <div
-              className={"relative h-24 mobile:h-56 overflow-hidden rounded-xl"}
+              className={
+                "relative h-96 w-screen overflow-hidden rounded-xl scale-x-95"
+              }
             >
               <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
             </div>
           </button>
         ))}
-      </div>
+      </Carousel>
     </div>
   );
 };

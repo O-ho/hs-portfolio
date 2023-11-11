@@ -13,12 +13,18 @@ const config: Config = {
       pc: "1280px",
     },
     extend: {
+      zIndex: {
+        full: "9999",
+      },
       inset: {
         "-32px": "-32px",
         "-128px": "-128px",
       },
       rotate: {
         "-1": "-1deg",
+      },
+      minHeight: {
+        "350": "280px",
       },
       height: {
         "0.3": "calc(100vw * 0.33)",
