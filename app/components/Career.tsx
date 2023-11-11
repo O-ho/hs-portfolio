@@ -14,8 +14,8 @@ const fadeInAnimation = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.08 * index,
-      duration: 0.5,
+      delay: 0.1 * index,
+      duration: 0.8,
     },
   }),
 };
@@ -29,14 +29,14 @@ const Career = () => {
             src={"/images/hs_main.jpeg"}
             priority
             alt={"hs"}
-            width={200}
+            width={180}
             height={300}
           />
           {/*<h2 className={"text-l font-semibold tracking-wide text-center"}>*/}
           {/*  나현석*/}
           {/*</h2>*/}
         </div>
-        <ul className={"flex flex-col gap-2"}>
+        <ul className={"flex flex-col gap-3.5 justify-center"}>
           {CAREER.map((item, index) => (
             <motion.li
               variants={fadeInAnimation}
@@ -51,7 +51,7 @@ const Career = () => {
               <RxDot />
               <span
                 className={
-                  "font-medium text-sm mobile:text-lg text-neutral-800 font-sans"
+                  "font-medium text-xs mobile:text-s text-neutral-800 font-sans"
                 }
               >
                 {item}
