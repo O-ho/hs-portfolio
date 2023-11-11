@@ -8,14 +8,14 @@ import { motion } from "framer-motion";
 const fadeInAnimation = {
   initial: {
     opacity: 0,
-    y: 100,
+    y: 50,
   },
   animate: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.1 * index,
-      duration: 0.8,
+      delay: 0.05 * index,
+      duration: 0.5,
     },
   }),
 };
