@@ -65,7 +65,13 @@ const Modal = ({ isOpen, exit, list }: Props) => {
                   "relative scale-y-90 h-mq2 w-mq rounded-2xl overflow-hidden"
                 }
               >
-                <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+                <Image
+                  src={src}
+                  alt={`example${id}`}
+                  fill
+                  sizes={"100%"}
+                  priority
+                />
               </div>
             </div>
           ))}
@@ -101,7 +107,13 @@ const Example = () => {
                 "relative h-96 w-screen overflow-hidden rounded-xl scale-x-95"
               }
             >
-              <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+              <Image
+                src={src}
+                alt={`example${id}`}
+                fill
+                sizes={"100%"}
+                priority
+              />
             </div>
           </button>
         ))}
