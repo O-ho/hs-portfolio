@@ -3,7 +3,7 @@ import React from "react";
 const Last = () => {
   return (
     <div
-      className={"px-4 text-center text-sm font-semibold leading-6 w-full mb-8"}
+      className={"px-4 text-center text-sm font-medium leading-6 w-full mb-8"}
     >
       <span>
         창구에서 수백명의 고객분들을 상담하며 느꼈습니다

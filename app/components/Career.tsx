@@ -32,9 +32,9 @@ const Career = () => {
             width={200}
             height={300}
           />
-          <h2 className={"text-l font-semibold tracking-wide text-center"}>
-            나현석
-          </h2>
+          {/*<h2 className={"text-l font-semibold tracking-wide text-center"}>*/}
+          {/*  나현석*/}
+          {/*</h2>*/}
         </div>
         <ul className={"flex flex-col gap-2"}>
           {CAREER.map((item, index) => (
