@@ -7,6 +7,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mobile: "420px",
+      tablet: "720px",
+      pc: "1280px",
+    },
     extend: {
       inset: {
         "-32px": "-32px",
@@ -16,11 +21,13 @@ const config: Config = {
         "-1": "-1deg",
       },
       height: {
+        "0.3": "calc(100vw * 0.33)",
         mq: "calc(100vh * 11/12)",
         mq2: "calc(100vh * 5/6)",
       },
 
       width: {
+        "0.3": "calc(100vw * 0.3)",
         "720": "720px",
         mq: "calc(100vw * 11/12)",
         mq2: "calc(100vw * 5/6)",

@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { EXAMPLE } from "@/app/constants/example";
 import { useOverlay } from "@toss/use-overlay";
 import ModalWrapper from "@/app/template/ModalWrapper";
 import Carousel from "react-multi-carousel";
+import Close from "public/icons/ic_close_w.png";
 
 import "react-multi-carousel/lib/styles.css";
+import useLockScroll from "@/app/hooks/useLockScroll";
+
 type Item = {
   id: number;
   src: StaticImageData;
@@ -16,6 +19,7 @@ type Props = {
   isOpen: boolean;
   exit: () => void;
   id: number;
+  list: Item[];
 };
 const responsive = {
   desktop: {
@@ -34,30 +38,37 @@ const responsive = {
     slidesToSlide: 1, // optional, default to 1.
   },
 };
-const Modal = ({ isOpen, exit, id }: Props) => {
-  const ref = useRef<Carousel>(null);
-  useEffect(() => {
-    ref.current?.goToSlide(id);
-  }, [ref, id]);
+const Modal = ({ isOpen, exit, list }: Props) => {
+  useLockScroll(isOpen);
 
-  if (!isOpen) return null;
-  console.log(id);
   return (
     <ModalWrapper>
-      <div className={"w-full h-full bg-opacity-40 bg-gray-300 relative"}>
+      <div className={"w-full h-full relative"}>
+        <button
+          type={"button"}
+          onClick={() => exit()}
+          className={
+            "absolute right-8 top-8 w-10 h-10 flex items-center justify-center z-50"
+          }
+        >
+          <Image src={Close} alt={"close"} width={30} height={30} />
+        </button>
         <Carousel
           responsive={responsive}
           className="relative"
-          ref={ref}
           minimumTouchDrag={40}
         >
-          {EXAMPLE.map(({ id, src }) => (
+          {list.map(({ id, src }) => (
             <div
               key={id}
               onClick={() => exit()}
-              className={"flex items-center justify-center"}
+              className={"flex items-center justify-center pt-12"}
             >
-              <div className={"relative scale-x-75 scale-y-90 h-mq w-mq"}>
+              <div
+                className={
+                  "relative scale-y-90 h-mq2 w-mq rounded-2xl overflow-hidden"
+                }
+              >
                 <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
               </div>
             </div>
@@ -70,17 +81,22 @@ const Modal = ({ isOpen, exit, id }: Props) => {
 const Example = () => {
   const overlay = useOverlay();
   const onClickImage = (id: number) => {
+    const array = EXAMPLE.filter((item) => item.id === id).concat(
+      EXAMPLE.filter((item) => item.id !== id),
+    );
     overlay.open(({ isOpen, exit }) => (
-      <Modal isOpen={isOpen} exit={exit} id={id} />
+      <Modal isOpen={isOpen} exit={exit} id={id} list={array} />
     ));
   };
   return (
-    <div className={"p-2"}>
-      <p>클릭 확대 추가</p>
-      <div className={"grid grid-cols-2 sm:grid-cols-3 gap-1.5"}>
+    <div className={"px-4"}>
+      <h2>타이틀이 하나 있으면 좋을것 같음 캐러셀로 바꿀지도</h2>
+      <div className={"grid grid-cols-3 gap-2"}>
         {EXAMPLE.map(({ id, src }) => (
           <button type={"button"} onClick={() => onClickImage(id)} key={id}>
-            <div className={"relative h-72 sm:h-72 overflow-hidden rounded-xl"}>
+            <div
+              className={"relative h-24 mobile:h-56 overflow-hidden rounded-xl"}
+            >
               <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
             </div>
           </button>

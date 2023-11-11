@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(roboto.className, "bg-cyan-50")}>
+      <body className={cn(roboto.className, "bg-white m-auto")}>
         <main className={"max-w-720 bg-white m-auto"}>
           <LayoutWrapper>{children}</LayoutWrapper>
         </main>

@@ -16,15 +16,15 @@ const Float = () => {
         href={"https://open.kakao.com/o/s93LYp7e"}
         type={"button"}
         className={
-          "w-20 h-20 bg-white items-center flex justify-center rounded-full shadow-2xl overflow-hidden"
+          "w-16 h-16 bg-white items-center flex justify-center rounded-full shadow-2xl overflow-hidden"
         }
       >
         <Image
           className={"w-auto h-auto"}
           src={KakaoIcon}
           alt={"kakao"}
-          width={56}
-          height={56}
+          width={48}
+          height={48}
         />
       </Link>
     </div>
