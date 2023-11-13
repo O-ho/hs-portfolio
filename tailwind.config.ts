@@ -7,12 +7,14 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mobile: "420px",
+      tablet: "720px",
+      pc: "1280px",
+    },
     extend: {
-      scale: {
-        "75": "0.75",
-        "80": "0.8",
-        "85": "0.85",
-        "90": "0.90",
+      zIndex: {
+        full: "9999",
       },
       inset: {
         "-32px": "-32px",
@@ -21,12 +23,17 @@ const config: Config = {
       rotate: {
         "-1": "-1deg",
       },
+      minHeight: {
+        "350": "280px",
+      },
       height: {
+        "0.3": "calc(100vw * 0.33)",
         mq: "calc(100vh * 11/12)",
         mq2: "calc(100vh * 5/6)",
       },
 
       width: {
+        "0.3": "calc(100vw * 0.3)",
         "720": "720px",
         mq: "calc(100vw * 11/12)",
         mq2: "calc(100vw * 5/6)",

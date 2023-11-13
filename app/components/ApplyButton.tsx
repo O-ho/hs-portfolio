@@ -2,10 +2,14 @@ import React from "react";
 
 const ApplyButton = () => {
   return (
-    <div
-      className={"bg-blue-400 h-24 flex text-4xl items-center justify-center"}
-    >
-      상담 신청하기 버튼 자리
+    <div className={"h-24 flex items-center justify-center px-4 w-full"}>
+      <button
+        className={
+          "bg-blue-600 text-white text-xl w-full h-14 flex items-center justify-center rounded-xl"
+        }
+      >
+        상담신청하기
+      </button>
     </div>
   );
 };

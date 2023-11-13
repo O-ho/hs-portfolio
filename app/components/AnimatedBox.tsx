@@ -50,7 +50,7 @@ const MenuItem = ({ content }: { content: Item }) => {
 
   return (
     <div
-      className={"relative h-32 flex items-center max-w-720 overflow-hidden"}
+      className={"relative flex items-center max-w-720 overflow-hidden"}
       ref={ref}
     >
       <motion.div
@@ -61,7 +61,7 @@ const MenuItem = ({ content }: { content: Item }) => {
         }}
         initial={"hidden"}
         animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 1.5, delay: 0.5 }}
+        transition={{ duration: 1, delay: 0.3 }}
       >
         <Image
           src={content.icon}
@@ -83,8 +83,8 @@ const AnimatedBox = () => {
     <section className={"px-4 relative"} ref={ref}>
       <motion.div
         variants={{
-          hidden: { opacity: 0, x: 0.5 },
-          visible: { opacity: 1, x: 1 },
+          hidden: { opacity: 0, y: -20 },
+          visible: { opacity: 1, y: 1 },
         }}
         initial={"hidden"}
         animate={inView ? "visible" : "hidden"}
@@ -95,7 +95,7 @@ const AnimatedBox = () => {
           이런분들, 상담을 통해 큰 도움이 됩니다
         </h2>
       </motion.div>
-      <div className={"flex flex-col gap-6"}>
+      <div className={"flex flex-col gap-16"}>
         {MENU.map((item) => (
           <MenuItem key={item.id} content={item} />
         ))}

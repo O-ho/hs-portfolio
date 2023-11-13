@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { EXAMPLE } from "@/app/constants/example";
 import { useOverlay } from "@toss/use-overlay";
 import ModalWrapper from "@/app/template/ModalWrapper";
 import Carousel from "react-multi-carousel";
+import Close from "public/icons/ic_close_w.png";
 
 import "react-multi-carousel/lib/styles.css";
-import useLockScroll from "@/app/hooks/useRockScroll";
-import { useAsync } from "react-use";
+import useLockScroll from "@/app/hooks/useLockScroll";
 
 type Item = {
   id: number;
@@ -19,6 +19,7 @@ type Props = {
   isOpen: boolean;
   exit: () => void;
   id: number;
+  list: Item[];
 };
 const responsive = {
   desktop: {
@@ -37,34 +38,40 @@ const responsive = {
     slidesToSlide: 1, // optional, default to 1.
   },
 };
-const Modal = ({ isOpen, exit, id }: Props) => {
-  const ref = useRef<Carousel>(null);
+const Modal = ({ isOpen, exit, list }: Props) => {
   useLockScroll(true);
-  useAsync(async () => {
-    ref.current?.goToSlide(id - 1);
-  }, [ref, id]);
-  console.log(ref.current);
+
   return (
     <ModalWrapper>
-      <div className={"w-full h-full bg-opacity-40 bg-gray-300 relative"}>
+      <div className={"w-full h-full relative z-50"}>
+        <button
+          type={"button"}
+          onClick={() => exit()}
+          className={
+            "absolute right-8 top-12 w-10 h-10 flex items-center justify-center z-50"
+          }
+        >
+          <Image src={Close} alt={"close"} width={30} height={30} />
+        </button>
         <Carousel
           responsive={responsive}
           className="relative"
-          ref={ref}
           minimumTouchDrag={40}
         >
-          {EXAMPLE.map(({ id, src }) => (
-            <div
-              key={id}
-              onClick={() => exit()}
-              className={"flex items-center justify-center"}
-            >
+          {list.map(({ id, src }) => (
+            <div key={id} className={"flex items-center justify-center"}>
               <div
                 className={
-                  "relative scale-85 h-mq w-mq rounded-2xl overflow-hidden"
+                  "relative scale-y-90 h-mq2 w-mq rounded-2xl overflow-hidden"
                 }
               >
-                <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+                <Image
+                  src={src}
+                  alt={`example${id}`}
+                  fill
+                  sizes={"100%"}
+                  priority
+                />
               </div>
             </div>
           ))}
@@ -76,22 +83,41 @@ const Modal = ({ isOpen, exit, id }: Props) => {
 const Example = () => {
   const overlay = useOverlay();
   const onClickImage = (id: number) => {
+    const array = EXAMPLE.filter((item) => item.id === id).concat(
+      EXAMPLE.filter((item) => item.id !== id),
+    );
     overlay.open(({ isOpen, exit }) => (
-      <Modal isOpen={isOpen} exit={exit} id={id} />
+      <Modal isOpen={isOpen} exit={exit} id={id} list={array} />
     ));
   };
   return (
-    <div className={"p-2"}>
-      <p>클릭 확대 추가</p>
-      <div className={"grid grid-cols-2 sm:grid-cols-3 gap-1.5"}>
+    <div onDrag={(e) => e.stopPropagation()} className={"z-full"}>
+      <h2>타이틀이 하나 있으면 좋을것 같음</h2>
+      <Carousel responsive={responsive}>
         {EXAMPLE.map(({ id, src }) => (
-          <button type={"button"} onClick={() => onClickImage(id)} key={id}>
-            <div className={"relative h-72 sm:h-72 overflow-hidden rounded-xl"}>
-              <Image src={src} alt={`example${id}`} fill sizes={"100%"} />
+          <button
+            type={"button"}
+            onClick={() => {
+              onClickImage(id);
+            }}
+            key={id}
+          >
+            <div
+              className={
+                "relative h-96 w-screen overflow-hidden rounded-xl scale-x-95"
+              }
+            >
+              <Image
+                src={src}
+                alt={`example${id}`}
+                fill
+                sizes={"100%"}
+                priority
+              />
             </div>
           </button>
         ))}
-      </div>
+      </Carousel>
     </div>
   );
 };
