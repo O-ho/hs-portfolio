@@ -13,6 +13,9 @@ const config: Config = {
       pc: "1280px",
     },
     extend: {
+      colors: {
+        bg: "#fafafa",
+      },
       zIndex: {
         full: "9999",
       },
@@ -33,12 +36,14 @@ const config: Config = {
       },
 
       width: {
+        "520": "520px",
         "0.3": "calc(100vw * 0.3)",
         "720": "720px",
         mq: "calc(100vw * 11/12)",
         mq2: "calc(100vw * 5/6)",
       },
       maxWidth: {
+        "520": "520px",
         "720": "720px",
       },
       backgroundImage: {

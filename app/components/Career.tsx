@@ -21,7 +21,7 @@ const fadeInAnimation = {
 };
 const Career = () => {
   return (
-    <section className={"flex flex-col pt-10"}>
+    <section className={"flex flex-col mt-6 bg-white"}>
       <div className={"flex gap-4 px-4"}>
         <div className={"flex flex-col gap-2"}>
           <Image

@@ -9,6 +9,7 @@ import Gap from "@/app/components/Gap";
 import Career from "@/app/components/Career";
 import CareerImage from "@/app/components/CareerImage";
 import Last from "@/app/components/Last";
+import ProgressOrder from "@/app/components/ProgressOrder";
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
       <Career />
       <CareerImage />
       <Gap />
+      <ProgressOrder />
+      <Gap />
+
       <AnimatedBox />
       <Gap />
       <Example />

@@ -8,6 +8,8 @@ import System from "public/icons/money-system.png";
 import Difficulty from "public/icons/difficulty.png";
 import Confuse from "public/icons/confused.png";
 import Bulb from "public/icons/bulb.png";
+import AnimateTitle from "@/app/components/AnimateTitle";
+import AnimatedParallel from "@/app/components/AnimatedParallel";
 
 const MENU = [
   {
@@ -45,24 +47,9 @@ type Item = {
   source?: string;
 };
 const MenuItem = ({ content }: { content: Item }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
   return (
-    <div
-      className={"relative flex items-center max-w-720 overflow-hidden"}
-      ref={ref}
-    >
-      <motion.div
-        className={"flex items-center gap-8 border-b-2 pb-4 w-full"}
-        variants={{
-          hidden: { opacity: 0, x: 50 },
-          visible: { opacity: 1, x: 1 },
-        }}
-        initial={"hidden"}
-        animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
+    <AnimatedParallel direction={"parallel"}>
+      <div className={"relative flex items-center max-w-720 overflow-hidden"}>
         <Image
           src={content.icon}
           width={48}
@@ -71,30 +58,22 @@ const MenuItem = ({ content }: { content: Item }) => {
         />
 
         <p className={"text-gray-600 text-lg"}>{content.content}</p>
-      </motion.div>
-    </div>
+      </div>
+    </AnimatedParallel>
   );
 };
 
 const AnimatedBox = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
   return (
     <section className={"px-4 relative"} ref={ref}>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 1 },
-        }}
-        initial={"hidden"}
-        animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 0.5, delay: 0.5 }}
-      >
+      <AnimateTitle>
         <h2 className={"text-xl flex items-center gap-4 mb-16 text-black"}>
           <Image src={Bulb} alt={"good"} width={56} height={56} />
           이런분들, 상담을 통해 큰 도움이 됩니다
         </h2>
-      </motion.div>
+      </AnimateTitle>
+
       <div className={"flex flex-col gap-16"}>
         {MENU.map((item) => (
           <MenuItem key={item.id} content={item} />
