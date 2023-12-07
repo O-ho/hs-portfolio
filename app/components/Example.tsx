@@ -10,6 +10,7 @@ import Close from "public/icons/ic_close_w.png";
 
 import "react-multi-carousel/lib/styles.css";
 import useLockScroll from "@/app/hooks/useLockScroll";
+import AnimateTitle from "@/app/components/AnimateTitle";
 
 type Item = {
   id: number;
@@ -91,9 +92,13 @@ const Example = () => {
     ));
   };
   return (
-    <div onDrag={(e) => e.stopPropagation()} className={"z-full"}>
-      <h2>타이틀이 하나 있으면 좋을것 같음</h2>
-      <Carousel responsive={responsive}>
+    <div onDrag={(e) => e.stopPropagation()} className={"z-full px-4"}>
+      <AnimateTitle>
+        <h2 className={"text-xl flex items-center text-black pl-4"}>
+          상담 후기
+        </h2>
+      </AnimateTitle>
+      <div className={"grid-cols-2 gap-2 grid mt-4"}>
         {EXAMPLE.map(({ id, src }) => (
           <button
             type={"button"}
@@ -104,20 +109,18 @@ const Example = () => {
           >
             <div
               className={
-                "relative h-96 w-screen overflow-hidden rounded-xl scale-x-95"
+                "h-48 bg-gray-200 flex rounded-lg overflow-hidden shadow-gray-200 shadow-2xl"
               }
             >
-              <Image
-                src={src}
+              <img
+                className={"object-cover w-full rounded-lg"}
+                src={src.src}
                 alt={`example${id}`}
-                fill
-                sizes={"100%"}
-                priority
               />
             </div>
           </button>
         ))}
-      </Carousel>
+      </div>
     </div>
   );
 };

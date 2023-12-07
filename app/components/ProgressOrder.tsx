@@ -9,7 +9,7 @@ const ProgressOrder = () => {
     <section>
       <AnimateTitle>
         <h2 className={"text-xl flex items-center text-black pl-4"}>
-          상담 순서 관련 타이틀
+          상담은 이런식으로 진행 됩니다.
         </h2>
       </AnimateTitle>
       <ul className={"flex flex-col w-full gap-6 p-4"}>

@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 
 const AnimateTitle = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: false });
+  const inView = useInView(ref, { once: true });
 
   return (
     <div className={"w-full"} ref={ref}>

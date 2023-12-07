@@ -5,7 +5,6 @@ const useLockScroll = (when: boolean) => {
     if (typeof window === "undefined") return;
     const body = window.document.querySelector("body");
     const pageY = window.scrollY;
-    console.log(pageY);
     if (!body) return;
     if (when) {
       window.document.body.style.overflow = "hidden";

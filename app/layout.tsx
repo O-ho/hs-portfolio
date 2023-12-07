@@ -4,6 +4,7 @@ import cn from "classnames";
 import { roboto } from "@/app/font";
 import Og from "../public/images/main.jpeg";
 import LayoutWrapper from "@/app/template/LayoutWrapper";
+import { ReactNode } from "react";
 export const metadata: Metadata = {
   metadataBase: new URL("https://hs-portfolio.vercel.app"),
   title: "나현석 | 자산관리사",
@@ -25,11 +26,7 @@ export const metadata: Metadata = {
     locale: "ko_KR",
   },
 };
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={cn(roboto.className, "bg-bg m-auto")}>
