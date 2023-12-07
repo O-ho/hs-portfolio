@@ -24,19 +24,17 @@ const Career = () => {
     <section className={"flex flex-col mt-6 bg-white"}>
       <div className={"flex gap-4 px-4"}>
         <div className={"flex flex-col gap-2"}>
-          <Image
-            className={"rounded-3xl min-h-350"}
+          <img
+            className={"rounded-3xl min-h-330 h-full"}
             src={"/images/hs_main.jpeg"}
-            priority
             alt={"hs"}
             width={180}
-            height={300}
           />
           {/*<h2 className={"text-l font-semibold tracking-wide text-center"}>*/}
           {/*  나현석*/}
           {/*</h2>*/}
         </div>
-        <ul className={"flex flex-col gap-3.5 justify-center"}>
+        <ul className={"flex flex-col gap-2.5 justify-center"}>
           {CAREER.map((item, index) => (
             <motion.li
               variants={fadeInAnimation}
