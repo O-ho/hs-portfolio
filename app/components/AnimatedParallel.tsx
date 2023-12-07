@@ -29,7 +29,7 @@ const AnimatedParallel = ({
   return (
     <div ref={ref} className={"flex overflow-hidden"}>
       <motion.div
-        className={"flex items-center gap-8 pb-4"}
+        className={"flex items-center gap-8 pb-4 w-full"}
         variants={variants()}
         initial={"hidden"}
         animate={inView ? "visible" : "hidden"}

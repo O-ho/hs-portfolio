@@ -13,13 +13,15 @@ const ProgressOrder = () => {
         </h2>
       </AnimateTitle>
       <ul className={"flex flex-col w-full gap-6 p-4"}>
-        <li
-          className={
-            "flex items-center h-64 bg-gray-100 justify-center rounded-2xl w-full"
-          }
-        >
-          1번
-        </li>
+        <AnimatedParallel direction={"vertical"}>
+          <li
+            className={
+              "flex items-center h-64 bg-gray-100 justify-center rounded-2xl w-full"
+            }
+          >
+            1번
+          </li>
+        </AnimatedParallel>
         <div className={"flex items-center justify-center"}>하단 애로우</div>
         <AnimatedParallel direction={"vertical"}>
           <li
@@ -33,22 +35,25 @@ const ProgressOrder = () => {
 
         <div className={"flex items-center justify-center"}>하단 애로우</div>
 
-        <li
-          className={
-            "flex items-center h-64 bg-gray-100 justify-center rounded-2xl"
-          }
-        >
-          3번
-        </li>
+        <AnimatedParallel direction={"vertical"}>
+          <li
+            className={
+              "flex items-center h-64 bg-gray-100 justify-center rounded-2xl w-full"
+            }
+          >
+            3번
+          </li>
+        </AnimatedParallel>
         <div className={"flex items-center justify-center"}>하단 애로우</div>
-
-        <li
-          className={
-            "flex items-center h-64 bg-gray-100 justify-center rounded-2xl"
-          }
-        >
-          4번
-        </li>
+        <AnimatedParallel direction={"vertical"}>
+          <li
+            className={
+              "flex items-center h-64 bg-gray-100 justify-center rounded-2xl w-full"
+            }
+          >
+            4번
+          </li>
+        </AnimatedParallel>
       </ul>
     </section>
   );
