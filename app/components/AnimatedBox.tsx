@@ -57,7 +57,7 @@ const MenuItem = ({ content }: { content: Item }) => {
           alt={content.content}
         />
 
-        <p className={"text-gray-600 text-lg"}>{content.content}</p>
+        <p className={"text-gray-600 text-lg ml-4"}>{content.content}</p>
       </div>
     </AnimatedParallel>
   );

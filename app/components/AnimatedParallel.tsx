@@ -20,16 +20,16 @@ const AnimatedParallel = ({
       };
     } else {
       return {
-        hidden: { opacity: 0, y: -40 },
+        hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 1 },
       };
     }
   };
 
   return (
-    <div ref={ref} className={"w-full flex"}>
+    <div ref={ref} className={"flex overflow-hidden"}>
       <motion.div
-        className={"flex items-center gap-8 pb-4 w-full"}
+        className={"flex items-center gap-8 pb-4"}
         variants={variants()}
         initial={"hidden"}
         animate={inView ? "visible" : "hidden"}
