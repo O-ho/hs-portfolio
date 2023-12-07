@@ -45,22 +45,25 @@ const Modal = ({ isOpen, exit, list }: Props) => {
   return (
     <ModalWrapper>
       <div className={"w-full h-full relative z-50"}>
-        <button
-          type={"button"}
-          onClick={() => exit()}
-          className={
-            "absolute right-8 top-12 w-10 h-10 flex items-center justify-center z-50"
-          }
-        >
-          <Image src={Close} alt={"close"} width={30} height={30} />
-        </button>
         <Carousel
           responsive={responsive}
           className="relative"
           minimumTouchDrag={40}
         >
           {list.map(({ id, src }) => (
-            <div key={id} className={"flex items-center justify-center"}>
+            <div
+              key={id}
+              className={"flex items-center justify-center relative"}
+            >
+              <button
+                type={"button"}
+                onClick={() => exit()}
+                className={
+                  "absolute right-8 top-12 w-10 h-10 flex items-center justify-center z-50"
+                }
+              >
+                <Image src={Close} alt={"close"} width={30} height={30} />
+              </button>
               <div
                 className={
                   "relative scale-y-90 h-mq2 w-mq rounded-2xl overflow-hidden"
